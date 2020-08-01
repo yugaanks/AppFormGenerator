@@ -26,7 +26,7 @@
                 <asp:Button Text="Submit" ID="Submit" runat="server" OnClick="Submit_button_Click" />
             </div>
             <div>
-                <asp:Button Text="Draft Email" ID="SendEmail" runat="server" OnClick="SendEmail_button_Click" Enabled="false" />
+                <asp:Button Text="Draft Email" ID="SendEmail" runat="server" Enabled="false" />
             </div>
             <div>
                 <asp:Label ID="Template" runat="server" />

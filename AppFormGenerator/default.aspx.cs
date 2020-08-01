@@ -8,7 +8,6 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-//using System.Windows.Forms;
 
 namespace AppFormGenerator
 {
@@ -34,7 +33,7 @@ namespace AppFormGenerator
             generateText();
         }
 
-        protected void SendEmail_button_Click(object sender, EventArgs e)
+        protected string SendEmail_Click()
         {
             var to = "mailto:secy-moef@nic.in";
             var cc = "?cc=menong@cag.gov.in";
@@ -43,7 +42,7 @@ namespace AppFormGenerator
                 "Covid-2019 pandemic";
             var body = "&body=" + StripHTML(template);
             var url = to + cc + subject + body;
-            Process.Start(url);
+            return url;
         }
 
         protected void Form_Selection_Change(object sender, EventArgs e)
@@ -77,7 +76,10 @@ namespace AppFormGenerator
             string text = readFile("EIANotification.txt");
             template = string.Format(text, firstName, lastName);
             if (template != string.Empty)
+            {
                 SendEmail.Enabled = true;
+                SendEmail.OnClientClick = "location.href = '" + SendEmail_Click() + "'; return false;" ;
+            }
         }
 
         protected void clearFields()
